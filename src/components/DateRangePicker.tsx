@@ -14,17 +14,17 @@ interface DateRangePickerProps {
 
 export function DateRangePicker({ value, onChange }: DateRangePickerProps) {
   return (
-    <div className="inline-flex rounded-lg border border-brand-border bg-white p-0.5">
+    <div className="inline-flex rounded-full border border-gray-100 bg-white p-1 shadow-card">
       {RANGE_OPTIONS.map((opt) => (
         <button
           key={opt.value}
           type="button"
           onClick={() => onChange(opt.value)}
           className={cn(
-            'rounded-md px-3 py-1.5 text-xs font-semibold transition-colors',
+            'rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors',
             value === opt.value
-              ? 'bg-brand-greenInk text-white'
-              : 'text-ink-muted hover:text-ink',
+              ? 'bg-[#dcfce7] text-[#15803d]'
+              : 'text-gray-500 hover:text-[#111827]',
           )}
         >
           {opt.label}

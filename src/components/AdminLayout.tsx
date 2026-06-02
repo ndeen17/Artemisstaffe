@@ -1,24 +1,32 @@
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate, Link } from 'react-router-dom';
+import type { ComponentType, SVGProps } from 'react';
 import {
-  LayoutDashboard,
-  TrendingUp,
-  Activity,
-  Workflow,
-  ShieldCheck,
-  Users,
-  LogOut,
-} from 'lucide-react';
+  OverviewIcon,
+  AcquisitionIcon,
+  EngagementIcon,
+  ProductIcon,
+  QualityIcon,
+  UsersIcon,
+  LogoutIcon,
+} from '@/components/icons';
 import { useAuthStore } from '@/store/authStore';
 import { signOut } from '@/api/admin';
 import { cn } from '@/lib/cn';
 
-const NAV = [
-  { to: '/', label: 'Overview', icon: LayoutDashboard, end: true },
-  { to: '/acquisition', label: 'Acquisition', icon: TrendingUp, end: false },
-  { to: '/engagement', label: 'Engagement', icon: Activity, end: false },
-  { to: '/product', label: 'Product', icon: Workflow, end: false },
-  { to: '/quality', label: 'Quality', icon: ShieldCheck, end: false },
-  { to: '/users', label: 'Users', icon: Users, end: false },
+interface NavItem {
+  to: string;
+  label: string;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
+  end?: boolean;
+}
+
+const NAV: NavItem[] = [
+  { to: '/', label: 'Overview', icon: OverviewIcon, end: true },
+  { to: '/acquisition', label: 'Acquisition', icon: AcquisitionIcon },
+  { to: '/engagement', label: 'Engagement', icon: EngagementIcon },
+  { to: '/product', label: 'Product', icon: ProductIcon },
+  { to: '/quality', label: 'Quality', icon: QualityIcon },
+  { to: '/users', label: 'Users', icon: UsersIcon },
 ];
 
 export function AdminLayout() {
@@ -33,16 +41,18 @@ export function AdminLayout() {
   }
 
   return (
-    <div className="flex min-h-screen">
-      <aside className="flex w-60 flex-col border-r border-brand-border bg-white">
-        <div className="flex h-16 items-center gap-2 border-b border-brand-border px-5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-greenInk text-sm font-bold text-white">
-            A
-          </div>
-          <span className="text-sm font-bold text-brand-navy">Artemis Staff</span>
+    <div className="h-screen overflow-hidden bg-[#fafafa] flex">
+      <aside className="hidden lg:flex w-64 flex-col border-r border-gray-100 bg-white">
+        <div className="flex items-center justify-between px-6 h-16 border-b border-gray-100">
+          <Link to="/" className="inline-flex items-center" aria-label="Artemis admin">
+            <img src="/assets/logo.png" alt="Artemis" className="h-8 w-auto object-contain" />
+          </Link>
+          <span className="rounded-full bg-[#dcfce7] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#15803d]">
+            Staff
+          </span>
         </div>
 
-        <nav className="flex-1 space-y-1 p-3">
+        <nav className="flex-1 px-3 py-6 space-y-1">
           {NAV.map(({ to, label, icon: Icon, end }) => (
             <NavLink
               key={to}
@@ -50,40 +60,44 @@ export function AdminLayout() {
               end={end}
               className={({ isActive }) =>
                 cn(
-                  'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                  'flex items-center gap-3 rounded-2xl px-3 py-2.5 text-[14px] font-medium transition-colors',
                   isActive
-                    ? 'bg-brand-greenSoft text-brand-greenInk'
-                    : 'text-ink-muted hover:bg-surface-muted hover:text-ink',
+                    ? 'bg-[#dcfce7] text-[#15803d]'
+                    : 'text-gray-700 hover:bg-gray-50 hover:text-[#111827]',
                 )
               }
             >
-              <Icon className="h-4 w-4" />
+              <Icon className="w-[18px] h-[18px]" />
               {label}
             </NavLink>
           ))}
         </nav>
 
-        <div className="border-t border-brand-border p-3">
-          <div className="mb-2 px-2">
-            <p className="truncate text-xs font-semibold text-ink">{user?.displayName ?? 'Admin'}</p>
-            <p className="truncate text-xs text-ink-subtle">{user?.email}</p>
+        <div className="border-t border-gray-100 px-3 py-4">
+          <div className="mb-2 px-3">
+            <p className="truncate text-[13px] font-semibold text-[#111827]">
+              {user?.displayName ?? 'Admin'}
+            </p>
+            <p className="truncate text-[12px] text-gray-500">{user?.email}</p>
           </div>
           <button
             type="button"
             onClick={handleLogout}
-            className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-ink-muted transition-colors hover:bg-surface-muted hover:text-ink"
+            className="flex w-full items-center gap-3 rounded-2xl px-3 py-2.5 text-[14px] font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-[#111827]"
           >
-            <LogOut className="h-4 w-4" />
+            <LogoutIcon className="w-[18px] h-[18px]" />
             Sign out
           </button>
         </div>
       </aside>
 
-      <main className="flex-1 overflow-auto bg-surface-muted">
-        <div className="mx-auto max-w-7xl p-8">
-          <Outlet />
-        </div>
-      </main>
+      <div className="flex-1 min-w-0 flex flex-col">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden">
+          <div className="mx-auto max-w-shell px-4 sm:px-6 lg:px-10 py-8">
+            <Outlet />
+          </div>
+        </main>
+      </div>
     </div>
   );
 }

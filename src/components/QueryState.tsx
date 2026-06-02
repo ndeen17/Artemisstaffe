@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Loader2, AlertTriangle } from 'lucide-react';
+import { SpinnerIcon, AlertIcon } from '@/components/icons';
 
 interface QueryStateProps {
   isLoading: boolean;
@@ -12,10 +12,10 @@ export function QueryState({ isLoading, isError, children, height = 200 }: Query
   if (isLoading) {
     return (
       <div
-        className="flex items-center justify-center gap-2 text-sm text-ink-muted"
+        className="flex items-center justify-center gap-2 text-sm text-gray-500"
         style={{ minHeight: height }}
       >
-        <Loader2 className="h-4 w-4 animate-spin" />
+        <SpinnerIcon className="h-4 w-4" />
         Loading…
       </div>
     );
@@ -26,7 +26,7 @@ export function QueryState({ isLoading, isError, children, height = 200 }: Query
         className="flex items-center justify-center gap-2 text-sm text-red-600"
         style={{ minHeight: height }}
       >
-        <AlertTriangle className="h-4 w-4" />
+        <AlertIcon className="h-4 w-4" />
         Failed to load data.
       </div>
     );

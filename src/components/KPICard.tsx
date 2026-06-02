@@ -13,25 +13,25 @@ export function KPICard({ label, value, hint, trend, className }: KPICardProps) 
   return (
     <div
       className={cn(
-        'rounded-xl border border-brand-border bg-white p-5 shadow-sm',
+        'rounded-2xl border border-gray-100 bg-white p-5 shadow-card',
         className,
       )}
     >
-      <p className="text-xs font-medium uppercase tracking-wide text-ink-subtle">{label}</p>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">{label}</p>
       <div className="mt-2 flex items-baseline gap-2">
-        <span className="text-2xl font-bold text-brand-navy">{value}</span>
+        <span className="text-2xl font-extrabold tracking-tight text-[#111827]">{value}</span>
         {trend && (
           <span
             className={cn(
               'text-xs font-semibold',
-              trend.positive === false ? 'text-red-600' : 'text-brand-greenInk',
+              trend.positive === false ? 'text-red-600' : 'text-[#15803d]',
             )}
           >
             {trend.positive === false ? '▼' : '▲'} {Math.abs(trend.value)}%
           </span>
         )}
       </div>
-      {hint && <p className="mt-1 text-xs text-ink-muted">{hint}</p>}
+      {hint && <p className="mt-1 text-[12px] text-gray-500">{hint}</p>}
     </div>
   );
 }

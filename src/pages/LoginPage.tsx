@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Loader2 } from 'lucide-react';
 import { AxiosError } from 'axios';
+import { SpinnerIcon } from '@/components/icons';
 import { signIn } from '@/api/admin';
 import { useAuthStore } from '@/store/authStore';
 

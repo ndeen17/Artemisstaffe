@@ -26,6 +26,16 @@ export default {
           muted: '#FAFAFA',
         },
       },
+      boxShadow: {
+        'green-glow':
+          '0 10px 30px -8px rgba(39, 208, 105, 0.45), 0 4px 14px rgba(39, 208, 105, 0.25)',
+        // Soft card elevation used across product surfaces — mirrors the
+        // main Artemis frontend so the admin shares the same depth language.
+        card: '0 8px 30px rgba(0, 0, 0, 0.04)',
+      },
+      maxWidth: {
+        shell: '1200px',
+      },
     },
   },
   plugins: [],
