@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { ArrowLeft, Download, FileText, Loader2 } from 'lucide-react';
+import { ArrowLeftIcon, DownloadIcon, FileIcon, SpinnerIcon } from '@/components/icons';
 import { fetchUser, fetchUserCvs, downloadUserCv, type UserCv } from '@/api/admin';
 import { PageHeader } from '@/components/PageHeader';
 import { Card } from '@/components/Card';
@@ -29,9 +29,9 @@ export function UserDetailPage() {
       <button
         type="button"
         onClick={() => navigate('/users')}
-        className="mb-4 inline-flex items-center gap-1 text-sm font-medium text-ink-muted hover:text-ink"
+        className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-semibold text-gray-500 hover:text-[#111827]"
       >
-        <ArrowLeft className="h-4 w-4" /> Back to users
+        <ArrowLeftIcon className="h-4 w-4" /> Back to users
       </button>
 
       <QueryState isLoading={userQuery.isLoading} isError={userQuery.isError} height={400}>
@@ -57,12 +57,12 @@ export function UserDetailPage() {
                     height={120}
                   >
                     {cvsQuery.data && cvsQuery.data.length === 0 && (
-                      <p className="py-6 text-center text-sm text-ink-subtle">
+                      <p className="py-6 text-center text-sm text-gray-400">
                         This user has no CVs.
                       </p>
                     )}
                     {cvsQuery.data && cvsQuery.data.length > 0 && (
-                      <ul className="divide-y divide-brand-border/60">
+                      <ul className="divide-y divide-gray-100">
                         {cvsQuery.data.map((cv) => (
                           <CvRow key={cv.id} userId={id} cv={cv} />
                         ))}
@@ -73,20 +73,20 @@ export function UserDetailPage() {
 
                 <Card title="Recent applications">
                   {userQuery.data.applications.length === 0 ? (
-                    <p className="py-4 text-center text-sm text-ink-subtle">No applications.</p>
+                    <p className="py-4 text-center text-sm text-gray-400">No applications.</p>
                   ) : (
-                    <ul className="divide-y divide-brand-border/60">
+                    <ul className="divide-y divide-gray-100">
                       {userQuery.data.applications.map((a) => (
                         <li key={a.id} className="flex items-center justify-between py-2.5">
                           <div>
-                            <p className="text-sm font-medium text-ink">{a.jobTitle}</p>
-                            <p className="text-xs text-ink-subtle">{a.company}</p>
+                            <p className="text-sm font-semibold text-[#111827]">{a.jobTitle}</p>
+                            <p className="text-xs text-gray-400">{a.company}</p>
                           </div>
                           <div className="text-right">
-                            <span className="inline-block rounded-full bg-brand-greenSoft px-2 py-0.5 text-xs font-semibold text-brand-greenInk">
+                            <span className="inline-block rounded-full bg-[#dcfce7] px-2.5 py-0.5 text-xs font-semibold text-[#15803d]">
                               {a.status}
                             </span>
-                            <p className="mt-0.5 text-xs text-ink-subtle">
+                            <p className="mt-0.5 text-xs text-gray-400">
                               {formatDate(a.updatedAt)}
                             </p>
                           </div>
@@ -122,15 +122,15 @@ export function UserDetailPage() {
 
                 <Card title="Recent activity">
                   {userQuery.data.recentActivity.length === 0 ? (
-                    <p className="py-4 text-center text-sm text-ink-subtle">No activity.</p>
+                    <p className="py-4 text-center text-sm text-gray-400">No activity.</p>
                   ) : (
                     <ol className="space-y-3">
                       {userQuery.data.recentActivity.map((e, i) => (
                         <li key={i} className="flex gap-3">
-                          <div className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-brand-green" />
+                          <div className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-brand-green" />
                           <div>
-                            <p className="text-sm font-medium text-ink">{e.action}</p>
-                            <p className="text-xs text-ink-subtle">{formatDateTime(e.at)}</p>
+                            <p className="text-sm font-semibold text-[#111827]">{e.action}</p>
+                            <p className="text-xs text-gray-400">{formatDateTime(e.at)}</p>
                           </div>
                         </li>
                       ))}
@@ -149,8 +149,8 @@ export function UserDetailPage() {
 function Field({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between gap-2">
-      <dt className="text-ink-subtle">{label}</dt>
-      <dd className="font-medium text-ink">{value}</dd>
+      <dt className="text-gray-400">{label}</dt>
+      <dd className="font-semibold text-[#111827]">{value}</dd>
     </div>
   );
 }
@@ -170,10 +170,10 @@ function CvRow({ userId, cv }: { userId: string; cv: UserCv }) {
   return (
     <li className="flex items-center justify-between py-2.5">
       <div className="flex items-center gap-3">
-        <FileText className="h-4 w-4 text-ink-subtle" />
+        <FileIcon className="h-4 w-4 text-gray-400" />
         <div>
-          <p className="text-sm font-medium text-ink">{cv.filename ?? `CV ${cv.id.slice(-6)}`}</p>
-          <p className="text-xs text-ink-subtle">
+          <p className="text-sm font-semibold text-[#111827]">{cv.filename ?? `CV ${cv.id.slice(-6)}`}</p>
+          <p className="text-xs text-gray-400">
             {cv.source}
             {cv.sizeBytes ? ` · ${formatBytes(cv.sizeBytes)}` : ''} · {formatDate(cv.createdAt)}
             {!cv.hasFile && ' · generated (text)'}
@@ -184,12 +184,12 @@ function CvRow({ userId, cv }: { userId: string; cv: UserCv }) {
         type="button"
         onClick={handleDownload}
         disabled={downloading}
-        className="inline-flex items-center gap-1.5 rounded-lg border border-brand-border px-3 py-1.5 text-xs font-semibold text-ink-muted transition-colors hover:bg-surface-muted disabled:opacity-50"
+        className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3.5 py-1.5 text-xs font-semibold text-gray-600 transition-colors hover:bg-[#fafafa] disabled:opacity-50"
       >
         {downloading ? (
-          <Loader2 className="h-3.5 w-3.5 animate-spin" />
+          <SpinnerIcon className="h-3.5 w-3.5" />
         ) : (
-          <Download className="h-3.5 w-3.5" />
+          <DownloadIcon className="h-3.5 w-3.5" />
         )}
         Download
       </button>

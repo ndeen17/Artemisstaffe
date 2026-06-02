@@ -34,28 +34,25 @@ export function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-surface-muted px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[#fafafa] px-4">
       <div className="w-full max-w-sm">
-        <div className="mb-6 flex items-center justify-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-greenInk text-base font-bold text-white">
-            A
-          </div>
-          <span className="text-lg font-bold text-brand-navy">Artemis Staff</span>
+        <div className="mb-6 flex items-center justify-center">
+          <img src="/assets/logo.png" alt="Artemis" className="h-9 w-auto object-contain" />
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="space-y-4 rounded-xl border border-brand-border bg-white p-6 shadow-sm"
+          className="space-y-4 rounded-2xl border border-gray-100 bg-white p-6 shadow-card"
         >
           <div>
-            <h1 className="text-base font-semibold text-brand-navy">Admin sign in</h1>
-            <p className="mt-0.5 text-xs text-ink-muted">
+            <h1 className="text-[18px] font-extrabold tracking-tight text-[#111827]">Admin sign in</h1>
+            <p className="mt-0.5 text-[12px] text-gray-500">
               Staff access only. Your account must be an authorized admin.
             </p>
           </div>
 
           <div>
-            <label htmlFor="email" className="mb-1 block text-xs font-medium text-ink">
+            <label htmlFor="email" className="mb-1 block text-[12px] font-semibold text-[#111827]">
               Email
             </label>
             <input
@@ -65,12 +62,12 @@ export function LoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-lg border border-brand-border px-3 py-2 text-sm outline-none focus:border-brand-greenInk focus:ring-1 focus:ring-brand-greenInk"
+              className="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm outline-none transition-shadow focus:border-brand-green focus:ring-2 focus:ring-[#dcfce7]"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="mb-1 block text-xs font-medium text-ink">
+            <label htmlFor="password" className="mb-1 block text-[12px] font-semibold text-[#111827]">
               Password
             </label>
             <input
@@ -80,12 +77,12 @@ export function LoginPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-lg border border-brand-border px-3 py-2 text-sm outline-none focus:border-brand-greenInk focus:ring-1 focus:ring-brand-greenInk"
+              className="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm outline-none transition-shadow focus:border-brand-green focus:ring-2 focus:ring-[#dcfce7]"
             />
           </div>
 
           {error && (
-            <p className="rounded-lg bg-red-50 px-3 py-2 text-xs font-medium text-red-600">
+            <p className="rounded-xl bg-red-50 px-3 py-2 text-xs font-medium text-red-600">
               {error}
             </p>
           )}
@@ -93,9 +90,9 @@ export function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-brand-greenInk px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-greenInk/90 disabled:opacity-60"
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-green px-4 py-3 text-[15px] font-semibold text-[#111827] ring-[2px] ring-[#dcfce7] shadow-sm transition-all hover:shadow-md hover:brightness-105 active:brightness-95 disabled:opacity-60"
           >
-            {loading && <Loader2 className="h-4 w-4 animate-spin" />}
+            {loading && <SpinnerIcon className="h-4 w-4" />}
             Sign in
           </button>
         </form>

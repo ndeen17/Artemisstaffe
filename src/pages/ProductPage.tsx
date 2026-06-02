@@ -33,15 +33,17 @@ export function ProductPage() {
         actions={<DateRangePicker value={sinceDays} onChange={setSinceDays} />}
       />
 
-      <div className="mb-6 inline-flex rounded-lg border border-brand-border bg-white p-0.5">
+      <div className="mb-6 inline-flex rounded-full border border-gray-100 bg-white p-1 shadow-card">
         {TYPES.map((t) => (
           <button
             key={t.value}
             type="button"
             onClick={() => setType(t.value)}
             className={cn(
-              'rounded-md px-3 py-1.5 text-xs font-semibold transition-colors',
-              type === t.value ? 'bg-brand-greenInk text-white' : 'text-ink-muted hover:text-ink',
+              'rounded-full px-4 py-1.5 text-xs font-semibold transition-colors',
+              type === t.value
+                ? 'bg-[#dcfce7] text-[#15803d]'
+                : 'text-gray-500 hover:text-[#111827]',
             )}
           >
             {t.label}

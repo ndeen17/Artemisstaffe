@@ -26,7 +26,7 @@ export function OverviewPage() {
         {data && (
           <div className="space-y-6">
             <section>
-              <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-ink-subtle">
+              <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
                 Users
               </h2>
               <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
@@ -53,7 +53,7 @@ export function OverviewPage() {
             </section>
 
             <section>
-              <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-ink-subtle">
+              <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
                 Content
               </h2>
               <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
