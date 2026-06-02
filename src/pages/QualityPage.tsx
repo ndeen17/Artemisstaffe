@@ -28,7 +28,7 @@ export function QualityPage() {
         {data && (
           <div className="space-y-6">
             <section>
-              <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-ink-subtle">
+              <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
                 Analysis reliability
               </h2>
               <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
@@ -46,34 +46,34 @@ export function QualityPage() {
             </section>
 
             <section>
-              <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-ink-subtle">
+              <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
                 Finding feedback
               </h2>
               <Card title="Thumbs-up rate by surface">
                 {data.feedback.length === 0 ? (
-                  <p className="py-8 text-center text-sm text-ink-subtle">
+                  <p className="py-8 text-center text-sm text-gray-400">
                     No feedback in this window.
                   </p>
                 ) : (
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
-                        <tr className="border-b border-brand-border text-left text-xs text-ink-subtle">
-                          <th className="py-2 pr-4 font-medium">Surface</th>
-                          <th className="py-2 pr-4 font-medium">Up</th>
-                          <th className="py-2 pr-4 font-medium">Down</th>
-                          <th className="py-2 pr-4 font-medium">Total</th>
-                          <th className="py-2 font-medium">Up rate</th>
+                        <tr className="border-b border-gray-100 text-left text-[11px] uppercase tracking-[0.08em] text-gray-400">
+                          <th className="py-2 pr-4 font-semibold">Surface</th>
+                          <th className="py-2 pr-4 font-semibold">Up</th>
+                          <th className="py-2 pr-4 font-semibold">Down</th>
+                          <th className="py-2 pr-4 font-semibold">Total</th>
+                          <th className="py-2 font-semibold">Up rate</th>
                         </tr>
                       </thead>
                       <tbody>
                         {data.feedback.map((f) => (
-                          <tr key={f.surface} className="border-b border-brand-border/50">
-                            <td className="py-2 pr-4 font-medium text-ink">{f.surface}</td>
-                            <td className="py-2 pr-4 text-brand-greenInk">{f.up}</td>
+                          <tr key={f.surface} className="border-b border-gray-100">
+                            <td className="py-2 pr-4 font-semibold text-[#111827]">{f.surface}</td>
+                            <td className="py-2 pr-4 text-[#15803d]">{f.up}</td>
                             <td className="py-2 pr-4 text-red-600">{f.down}</td>
-                            <td className="py-2 pr-4 text-ink-muted">{f.total}</td>
-                            <td className="py-2 font-semibold text-brand-navy">
+                            <td className="py-2 pr-4 text-gray-500">{f.total}</td>
+                            <td className="py-2 font-semibold text-[#111827]">
                               {formatPct(f.upRate)}
                             </td>
                           </tr>

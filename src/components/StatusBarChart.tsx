@@ -37,7 +37,7 @@ export function StatusBarChart({ data, height = 240, colors }: StatusBarChartPro
   if (rows.every((r) => r.count === 0)) {
     return (
       <div
-        className="flex items-center justify-center text-sm text-ink-subtle"
+        className="flex items-center justify-center text-sm text-gray-400"
         style={{ height }}
       >
         No data in this window.
