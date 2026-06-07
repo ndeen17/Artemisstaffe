@@ -4,8 +4,9 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 export interface AdminUser {
   id: string;
   email: string;
-  displayName?: string | null;
-  role?: string | null;
+  name?: string | null;
+  role: string;
+  lastLoginAt?: string | null;
 }
 
 interface AuthState {

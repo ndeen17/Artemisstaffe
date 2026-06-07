@@ -76,7 +76,7 @@ export function AdminLayout() {
         <div className="border-t border-gray-100 px-3 py-4">
           <div className="mb-2 px-3">
             <p className="truncate text-[13px] font-semibold text-[#111827]">
-              {user?.displayName ?? 'Admin'}
+              {user?.name ?? 'Admin'}
             </p>
             <p className="truncate text-[12px] text-gray-500">{user?.email}</p>
           </div>

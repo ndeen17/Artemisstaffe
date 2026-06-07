@@ -36,7 +36,7 @@ let refreshPromise: Promise<string | null> | null = null;
 async function performRefresh(): Promise<string | null> {
   try {
     const res = await axios.post<{ user: AdminUser; accessToken: string }>(
-      `${baseURL}/auth/refresh`,
+      `${baseURL}/admin-auth/refresh`,
       {},
       { withCredentials: true, timeout: 15_000 },
     );
@@ -59,7 +59,7 @@ apiClient.interceptors.response.use(
       return Promise.reject(error);
     }
     const url = original.url ?? '';
-    if (url.includes('/auth/signin') || url.includes('/auth/refresh')) {
+    if (url.includes('/admin-auth/signin') || url.includes('/admin-auth/refresh')) {
       return Promise.reject(error);
     }
     original._retry = true;

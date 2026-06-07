@@ -11,12 +11,12 @@ export interface SignInResponse {
 }
 
 export async function signIn(email: string, password: string): Promise<SignInResponse> {
-  const res = await apiClient.post<SignInResponse>('/auth/signin', { email, password });
+  const res = await apiClient.post<SignInResponse>('/admin-auth/signin', { email, password });
   return res.data;
 }
 
 export async function signOut(): Promise<void> {
-  await apiClient.post('/auth/signout').catch(() => undefined);
+  await apiClient.post('/admin-auth/logout').catch(() => undefined);
 }
 
 // ---------------------------------------------------------------------------
